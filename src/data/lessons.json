@@ -1,0 +1,22 @@
+[
+  {
+    "slug": "jazz-swing-101",
+    "title": "Swing 101: Feel, Time, and Comping",
+    "track": "Jazz",
+    "level": "Beginner",
+    "durationMinutes": 7,
+    "summary": "How swing feel works + a simple comping pattern you can practice today.",
+    "video": { "provider": "youtube", "id": "dQw4w9WgXcQ" },
+    "tags": ["swing", "time", "comping"]
+  },
+  {
+    "slug": "classical-bach-phrasing",
+    "title": "Bach Phrasing: Shaping a Line",
+    "track": "Classical",
+    "level": "Intermediate",
+    "durationMinutes": 9,
+    "summary": "Breathing, articulation, and micro-dynamics to make Bach sing.",
+    "video": { "provider": "youtube", "id": "dQw4w9WgXcQ" },
+    "tags": ["bach", "phrasing", "articulation"]
+  }
+]

@@ -1,0 +1,39 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import lessons from "../../data/lessons.json";
+
+const jazz = (lessons as any[]).filter((l: any) => l.track.toLowerCase() === "jazz");
+const classical = (lessons as any[]).filter((l: any) => l.track.toLowerCase() === "classical");
+---
+<BaseLayout title="All Lessons | Jazz + Classical Studio">
+  <section class="hero">
+    <h1>All Lessons</h1>
+    <p>Browse everything. Each lesson ends with a concrete “what to practice next.”</p>
+  </section>
+
+  <h2 style="margin:22px 0 10px">Jazz</h2>
+  <section class="grid">
+    {jazz.map((l: any) => (
+      <a class="card" href={`/lessons/${l.slug}`}>
+        <div class="meta">
+          <span class="tag">{l.level}</span><span>{l.durationMinutes} min</span>
+        </div>
+        <h3>{l.title}</h3>
+        <p style="margin:0;color:var(--muted);line-height:1.55">{l.summary}</p>
+      </a>
+    ))}
+  </section>
+
+  <h2 style="margin:22px 0 10px">Classical</h2>
+  <section class="grid">
+    {classical.map((l: any) => (
+      <a class="card" href={`/lessons/${l.slug}`}>
+        <div class="meta">
+          <span class="tag">{l.level}</span><span>{l.durationMinutes} min</span>
+        </div>
+        <h3>{l.title}</h3>
+        <p style="margin:0;color:var(--muted);line-height:1.55">{l.summary}</p>
+      </a>
+    ))}
+  </section>
+</BaseLayout>

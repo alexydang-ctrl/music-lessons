@@ -1,0 +1,46 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import lessons from "../../data/lessons.json";
+
+export async function getStaticPaths() {
+  return (lessons as any[]).map((l: any) => ({ params: { slug: l.slug } }));
+}
+
+const { slug } = Astro.params;
+const lesson = (lessons as any[]).find((l: any) => l.slug === slug);
+if (!lesson) throw new Error(`Lesson not found: ${slug}`);
+
+const embedHtml =
+  lesson.video.provider === "youtube"
+    ? `<iframe width="100%" height="480" src="https://www.youtube-nocookie.com/embed/${lesson.video.id}" title="Lesson video"
+        frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+        allowfullscreen style="border-radius:16px;border:1px solid rgba(255,255,255,.12)"></iframe>`
+    : `<div>Unsupported video provider</div>`;
+---
+<BaseLayout title={`${lesson.title} | Jazz + Classical Studio`} description={lesson.summary}>
+  <a class="pill" href="/lessons">← Back to lessons</a>
+
+  <section class="hero" style="margin-top:14px">
+    <h1>{lesson.title}</h1>
+    <div class="meta">
+      <span class="tag">{lesson.track}</span>
+      <span>{lesson.level}</span>
+      <span>•</span>
+      <span>{lesson.durationMinutes} min</span>
+      {lesson.tags?.map((t: any) => <span class="tag">{t}</span>)}
+    </div>
+    <p>{lesson.summary}</p>
+  </section>
+
+  <section style="margin-top:16px">
+    <div set:html={embedHtml} />
+  </section>
+
+  <section class="hero" style="margin-top:16px">
+    <h2 style="margin:0">Practice Goal</h2>
+    <p style="margin-top:8px">
+      Write 1 sentence: “Today I will practice ____ for ____ minutes at ____ tempo.”
+      Keep it small. Consistency wins.
+    </p>
+  </section>
+</BaseLayout>

@@ -1,0 +1,36 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import lessons from "../data/lessons.json";
+const featured = (lessons as any[]).slice(0, 2);
+---
+<BaseLayout title="Jazz + Classical Studio" description="Learn music through short, fun video lessons.">
+  <section class="hero">
+    <h1>Learn music the fun way — jazz + classical.</h1>
+    <p>
+      Bite-sized video lessons taught by student musicians. Pick a track, watch a clip,
+      and leave with one clear practice goal.
+    </p>
+    <div class="meta">
+      <span class="tag">🎷 Jazz</span>
+      <span class="tag">🎻 Classical</span>
+      <span class="tag">🧠 Practice-first</span>
+      <span class="tag">⏱ 5–10 min</span>
+    </div>
+  </section>
+
+  <section class="grid">
+    {featured.map((l: any) => (
+      <a class="card" href={`/lessons/${l.slug}`}>
+        <div class="meta">
+          <span class="tag">{l.track}</span>
+          <span>{l.level}</span>
+          <span>•</span>
+          <span>{l.durationMinutes} min</span>
+        </div>
+        <h3>{l.title}</h3>
+        <p style="margin:0;color:var(--muted);line-height:1.55">{l.summary}</p>
+        <div style="margin-top:12px;color:var(--accent);font-weight:600">Watch →</div>
+      </a>
+    ))}
+  </section>
+</BaseLayout>

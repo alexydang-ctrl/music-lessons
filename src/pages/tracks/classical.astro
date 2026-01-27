@@ -1,0 +1,21 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import lessons from "../../data/lessons.json";
+const classical = (lessons as any[]).filter((l: any) => l.track?.toLowerCase?.() === "classical");
+---
+<BaseLayout title="Classical Track | Jazz + Classical Studio">
+  <section class="hero">
+    <h1>Classical Track</h1>
+    <p>Tone, phrasing, technique, interpretation — with a clear takeaway each time.</p>
+  </section>
+
+  <section class="grid">
+    {classical.map((l: any) => (
+      <a class="card" href={`/lessons/${l.slug}`}>
+        <div class="meta"><span class="tag">{l.level}</span><span>{l.durationMinutes} min</span></div>
+        <h3>{l.title}</h3>
+        <p style="margin:0;color:var(--muted);line-height:1.55">{l.summary}</p>
+      </a>
+    ))}
+  </section>
+</BaseLayout>
