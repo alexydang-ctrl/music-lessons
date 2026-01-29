@@ -3,10 +3,11 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
 import lessons from "../../data/lessons.json";
 const classical = (lessons as any[]).filter((l: any) => l.track?.toLowerCase?.() === "classical");
 ---
+
 <BaseLayout title="Classical Track | Jazz + Classical Studio">
   <section class="hero">
     <h1>Classical Track</h1>
-    <p>Tone, phrasing, technique, interpretation — with a clear takeaway each time.</p>
+    <p>Key ideas: Tone, phrasing, technique, interpretation. All the important general skills required for classical music.</p>
   </section>
 
   <section class="grid">
